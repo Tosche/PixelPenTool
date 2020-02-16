@@ -158,7 +158,7 @@ class InitialisePanel( object ):
 		btnX = 60
 		btnY = 22
 		windowWidth  = sp*4+txX+edX+40
-		windowHeight = sp*7+edY*7+btnY
+		windowHeight = sp*6+edY*7+btnY
 
 		self.w = vanilla.FloatingWindow(
 			posSize = ( 200, 100,windowWidth, windowHeight ), # default window size
@@ -190,23 +190,23 @@ class InitialisePanel( object ):
 				"des" : int( self.w.prevSettings["des"] / self.w.prevSettings["gri"]) }
 
 		self.w.text_gri = vanilla.TextBox( (sp, sp, txX, txY), "Pixel Size" )
-		self.w.edit_gri = ArrowEditText( (sp*2+txX, sp, edX, edY), UIparam["gri"], callback=self.refreshScreen)
+		self.w.edit_gri = ArrowEditText( (sp*2+txX, sp-3, edX, edY), UIparam["gri"], callback=self.refreshScreen)
 		self.w.unit_gri = vanilla.TextBox( (sp*3+txX+edX, sp, txX, txY), "Units" )
 		
 		self.w.text_asc = vanilla.TextBox( (sp, sp*2+edY*1, txX, txY), "Ascender Height" )
-		self.w.edit_asc = ArrowEditText( (sp*2+txX, sp*2+edY*1, edX, edY), UIparam["asc"], callback=self.refreshScreen)
+		self.w.edit_asc = ArrowEditText( (sp*2+txX, sp*2+edY*1-3, edX, edY), UIparam["asc"], callback=self.refreshScreen)
 		self.w.unit_asc = vanilla.TextBox( (sp*3+txX+edX, sp*2+edY*1, txX, txY), "Pixels" )
 
 		self.w.text_cap = vanilla.TextBox( (sp, sp*3+edY*2, txX, txY), "Cap Height" )
-		self.w.edit_cap = ArrowEditText( (sp*2+txX, sp*3+edY*2, edX, edY), UIparam["cap"], callback=self.refreshScreen)
+		self.w.edit_cap = ArrowEditText( (sp*2+txX, sp*3+edY*2-3, edX, edY), UIparam["cap"], callback=self.refreshScreen)
 		self.w.unit_cap = vanilla.TextBox( (sp*3+txX+edX, sp*3+edY*2, txX, txY), "Pixels" )
 
 		self.w.text_xhe = vanilla.TextBox( (sp, sp*4+edY*3, txX, txY), "x Height" )
-		self.w.edit_xhe = ArrowEditText( (sp*2+txX, sp*4+edY*3, edX, edY), UIparam["xhe"], callback=self.refreshScreen)
+		self.w.edit_xhe = ArrowEditText( (sp*2+txX, sp*4+edY*3-3, edX, edY), UIparam["xhe"], callback=self.refreshScreen)
 		self.w.unit_xhe = vanilla.TextBox( (sp*3+txX+edX, sp*4+edY*3, txX, txY), "Pixels" )
 
 		self.w.text_des = vanilla.TextBox( (sp, sp*5+edY*4, txX, txY), "Descender Height" )
-		self.w.edit_des = ArrowEditText( (sp*2+txX, sp*5+edY*4, edX, edY), UIparam["des"], callback=self.refreshScreen)
+		self.w.edit_des = ArrowEditText( (sp*2+txX, sp*5+edY*4-3, edX, edY), UIparam["des"], callback=self.refreshScreen)
 		self.w.unit_des = vanilla.TextBox( (sp*3+txX+edX, sp*5+edY*4, txX, txY), "Pixels" )
 
 		self.w.text_upm = vanilla.TextBox( (sp, sp*6+edY*5, -sp, txY), "UPM will be set to : %s" % (UIparam["asc"]-UIparam["des"])*UIparam["gri"] )

@@ -2,7 +2,7 @@
 
 <p align="center">
 
-<img src="https://raw.githubusercontent.com/Tosche/PixelOenTool/master/Images/PixelPen.gif" alt="Pixel Pen">
+<img src="https://raw.githubusercontent.com/Tosche/PixelOenTool/master/Images/PixelPenTool.gif" alt="Pixel Pen">
 
 </p>
 

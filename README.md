@@ -17,6 +17,8 @@ It's a pencil tool that draws pixels using components, making pixel font design 
 
 ### How to use
 
+0. The tool is available on the tool bar, alternatively the key shortcut is X.
+
 1. When you activate the Pixel Pen tool for the first time in your font, it will open a setting window where you can specify pixel size and metrics.
 
 2. Open a glyph, and draw like a regular pencil tool. The Pixel Pen has auto-erase function, and will delete existing components.

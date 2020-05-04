@@ -125,10 +125,22 @@ class PixelPenTool(SelectTool):
 			newCompo.name = "_pixel"
 			newCompo.automaticAlignment = False
 			newCompo.position = self.compoPosAtMousePos()
-			Glyphs.font.selectedLayers[0].components.append(newCompo)
+			try:
+				# GLYPHS 3
+				Glyphs.font.selectedLayers[0].shapes.append(newCompo)
+			except:
+				# GLYPHS 2
+				Glyphs.font.selectedLayers[0].components.append(newCompo)
+			
 
 		elif self.PixelPenWriteMode == False and self.isCompoHere()[0] == True: # erasing
-			Glyphs.font.selectedLayers[0].removeComponent_(self.isCompoHere()[1])
+			try:
+				# GLYPHS 3
+				Glyphs.font.selectedLayers[0].removeShape_(self.isCompoHere()[1])
+			except:
+				# GLYPHS 2
+				Glyphs.font.selectedLayers[0].removeComponent_(self.isCompoHere()[1])
+			
 
 	@objc.python_method
 	def __file__(self):
@@ -242,7 +254,13 @@ class InitialisePanel( object ):
 			nl = Glyphs.font.glyphs["_pixel"].layers[m.id]
 			if len(nl.paths) == 0:
 				nl.width = pixSize
-				nl.paths.append(newPixel.copy())
+				try:
+					# GLYPHS 3
+					nl.shapes.append(newPixel.copy())
+				except:
+					# GLYPHS 2
+					nl.paths.append(newPixel.copy())
+				
 
 		Glyphs.font.userData["PixelPenSetup"] = True
 		self.w.close()
@@ -252,10 +270,19 @@ class InitialisePanel( object ):
 		ps = self.w.prevSettings
 		Glyphs.font.upm = ps['upm']
 		Glyphs.font.grid = ps['gri']
-		Glyphs.font.selectedFontMaster.ascender = ps["asc"]
-		Glyphs.font.selectedFontMaster.capHeight = ps["cap"]
-		Glyphs.font.selectedFontMaster.xHeight = ps["xhe"]
-		Glyphs.font.selectedFontMaster.descender = ps["des"]
+		try:
+			# GLYPHS 3
+			Glyphs.font.selectedFontMaster.setDefaultMetric_forKey_(ps["asc"],"ascender")
+			Glyphs.font.selectedFontMaster.setDefaultMetric_forKey_(ps["cap"],"capHeight")
+			Glyphs.font.selectedFontMaster.setDefaultMetric_forKey_(ps["xhe"],"xHeight")
+			Glyphs.font.selectedFontMaster.setDefaultMetric_forKey_(ps["des"],"descender")
+		except:
+			# GLYPHS 2
+			Glyphs.font.selectedFontMaster.ascender = ps["asc"]
+			Glyphs.font.selectedFontMaster.capHeight = ps["cap"]
+			Glyphs.font.selectedFontMaster.xHeight = ps["xhe"]
+			Glyphs.font.selectedFontMaster.descender = ps["des"]
+		
 		Glyphs.font.toolIndex = 0
 
 	def isNumber(self, value):
@@ -275,9 +302,18 @@ class InitialisePanel( object ):
 		upm = (asc - des) * gri
 		Glyphs.font.grid = gri
 		Glyphs.font.upm = upm
-		Glyphs.font.selectedFontMaster.ascender = asc* gri
-		Glyphs.font.selectedFontMaster.capHeight = cap* gri
-		Glyphs.font.selectedFontMaster.xHeight = xhe* gri
-		Glyphs.font.selectedFontMaster.descender = des * gri
+		try:
+			# GLYPHS 3
+			Glyphs.font.selectedFontMaster.setDefaultMetric_forKey_( asc*gri, "ascender" )
+			Glyphs.font.selectedFontMaster.setDefaultMetric_forKey_( cap*gri, "capHeight" )
+			Glyphs.font.selectedFontMaster.setDefaultMetric_forKey_( xhe*gri, "xHeight" )
+			Glyphs.font.selectedFontMaster.setDefaultMetric_forKey_( des*gri, "descender" )
+		except:
+			# GLYPHS 2
+			Glyphs.font.selectedFontMaster.ascender = asc* gri
+			Glyphs.font.selectedFontMaster.capHeight = cap* gri
+			Glyphs.font.selectedFontMaster.xHeight = xhe* gri
+			Glyphs.font.selectedFontMaster.descender = des * gri
+		
 		self.w.text_upm.set("UPM will be set to : %s" % upm)
 		Glyphs.redraw()
